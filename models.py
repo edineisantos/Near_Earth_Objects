@@ -41,7 +41,7 @@ class NearEarthObject:
         :param diameter: The diameter, in kilometers, of this NearEarthObject.
         :param hazardous: Whether or not this NearEarthObject is potentially hazardous.
         """
-        self._designation = designation
+        self.designation = designation
         self.name = name if name else None
         self.diameter = float(diameter) if diameter else float('nan')
         self.hazardous = bool(hazardous)
@@ -53,9 +53,9 @@ class NearEarthObject:
     def fullname(self):
         """Return a representation of the full name of this NEO."""
         if self.name:
-            return f"{self._designation} ({self.name})"
+            return f"{self.designation} ({self.name})"
         else:
-            return self._designation
+            return self.designation
 
     def __str__(self):
         """Return `str(self)`."""
@@ -65,7 +65,7 @@ class NearEarthObject:
 
     def __repr__(self):
         """Return `repr(self)`, a computer-readable string representation of this object."""
-        return (f"NearEarthObject(designation={self._designation!r}, name={self.name!r}, "
+        return (f"NearEarthObject(designation={self.designation!r}, name={self.name!r}, "
                 f"diameter={self.diameter:.3f}, hazardous={self.hazardous!r})")
 
 
@@ -87,7 +87,7 @@ class CloseApproach:
 
         :param info: A dictionary of excess keyword arguments supplied to the constructor.
         """
-        self.designation = designation
+        self._designation = designation
         self.time = cd_to_datetime(time)
         self.distance = float(distance)
         self.velocity = float(velocity)
@@ -110,8 +110,8 @@ class CloseApproach:
         formatted_time = datetime_to_str(self.time)
 
         # Building the fullname for NEO
-        fullname = f"{self.designation} ({self.neo.name})" \
-            if self.neo and self.neo.name else self.designation
+        fullname = f"{self._designation} ({self.neo.name})" \
+            if self.neo and self.neo.name else self._designation
 
         # Return a string that includes both the NEO's fullname and the formatted time
         return f"Object '{fullname}' had a close approach at {formatted_time}"
@@ -121,8 +121,8 @@ class CloseApproach:
         # TODO: Use this object's attributes to return a human-readable string representation.
         # The project instructions include one possibility. Peek at the __repr__
         # method for examples of advanced string formatting.
-        fullname = f"{self.neo._designation} ({self.neo.name})" \
-            if self.neo and self.neo.name else self.designation
+        fullname = f"{self.neo.designation} ({self.neo.name})" \
+            if self.neo and self.neo.name else self._designation
         return (
         f"{self.time_str}, "
         f"approaching Earth at a distance of {self.distance:.2f} au and a "
