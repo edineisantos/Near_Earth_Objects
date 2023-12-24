@@ -123,8 +123,11 @@ class CloseApproach:
         # method for examples of advanced string formatting.
         fullname = f"{self.neo._designation} ({self.neo.name})" \
             if self.neo and self.neo.name else self.designation
-        return (f"At {self.time_str}, '{fullname}' approaches Earth at a distance of "
-                f"{self.distance:.2f} au and a velocity of {self.velocity:.2f} km/s.")
+        return (
+        f"{self.time_str}, "
+        f"approaching Earth at a distance of {self.distance:.2f} au and a "
+        f"velocity of {self.velocity:.2f} km/s."
+        )
 
     def __repr__(self):
         """Return `repr(self)`, a computer-readable string representation of this object."""
