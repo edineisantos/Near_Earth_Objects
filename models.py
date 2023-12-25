@@ -133,3 +133,36 @@ class CloseApproach:
         """Return `repr(self)`, a computer-readable string representation of this object."""
         return f"CloseApproach(time={self.time_str!r}, distance={self.distance:.2f}, " \
                f"velocity={self.velocity:.2f}, neo={self.neo!r})"
+    
+    def serialize(self, to_csv=False):
+        """Serialize the CloseApproach data into a dictionary for CSV or JSON output.
+
+        :param to_csv: Boolean indicating if the serialization is for CSV output.
+        :return: A dictionary of serialized data.
+        """
+        if to_csv:
+            # Flatten the structure for CSV output
+            return {
+                "datetime_utc": datetime_to_str(self.time),
+                "distance_au": self.distance,
+                "velocity_km_s": self.velocity,
+                "designation": self.neo.designation if self.neo else '',
+                "name": self.neo.name if self.neo and self.neo.name else '',
+                "diameter_km": self.neo.diameter if self.neo and self.neo.diameter else 'nan',
+                "potentially_hazardous": str(self.neo.hazardous) if self.neo else 'False'
+            }
+        else:
+            # Nested structure for JSON output
+            return {
+                "datetime_utc": datetime_to_str(self.time),
+                "distance_au": self.distance,
+                "velocity_km_s": self.velocity,
+                "neo": {
+                    "designation": self.neo.designation if self.neo else '',
+                    "name": self.neo.name if self.neo and self.neo.name else '',
+                    "diameter_km": self.neo.diameter if self.neo and self.neo.diameter else 'nan',
+                    "potentially_hazardous": self.neo.hazardous if self.neo else False
+                }
+            }
+
+
