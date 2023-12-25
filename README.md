@@ -37,7 +37,7 @@ This project contains two important data sets, and the first step is to explore 
 
 One dataset (`neos.csv`) contains information about semantic, physical, orbital, and model parameters for certain small bodies (asteroids and comets, mostly) in our solar system. The other dataset (`cad.json`) contains information about NEO close approaches - moments in time when the orbit of an astronomical body brings it close to Earth. NASA helpfully provides a [glossary](https://cneos.jpl.nasa.gov/glossary/) to define any unfamiliar terms you might encounter.
 
-Importantly, these datasets come directly from NASA.
+Importantly, these datasets are sourced directly from NASA and remain unaltered.
 
 ### Small-Bodies Dataset
 
@@ -75,9 +75,9 @@ For an in-depth understanding of each attribute, NASA's [API documentation](http
 
 ### Visual Exploration
 
-If someone prefers to explore data sets by poking around a web site, NASA has [a tutorial video](https://www.youtube.com/watch?v=UA6voCyCW1g) on how to effectively navigate the CNEOS website, and an [interactive close approach data table](https://cneos.jpl.nasa.gov/ca/) that you can investigate.
+For those who prefer to explore datasets through web-based interaction, NASA offers [a tutorial video](https://www.youtube.com/watch?v=UA6voCyCW1g) on effectively navigating the CNEOS website. Additionally, there's an [interactive close approach data table](https://cneos.jpl.nasa.gov/ca/) available for exploration.
 
-Also, it's important to realize that NASA is discovering new NEOs, and potential forecasting new close approaches, every week, so their web-based UI might contain updated information that isn't represented in the data files included with this project.
+It's also worth noting that NASA continuously discovers new NEOs and forecasts new close approaches. Consequently, the web-based UI may contain updated information not present in the data files included with this project.
 
 ## Project Interface
 
@@ -254,7 +254,7 @@ $ python3 main.py query --start-date 2020-01-01 --end-date 2029-12-31 --min-diam
 
 ### `interactive`
 
-There's a third useful subcommand named `interactive`. This subcommand first loads the database and then starts a command loop so that the user can repeatedly run `inspect` and `query` subcommands on the database without having to wait to reload the data each time you want to run a new command.
+A third useful subcommand is `interactive`. This subcommand initially loads the database and then initiates a command loop, allowing for repeated execution of `inspect` and `query` subcommands on the database. This setup eliminates the need to reload data for each new command execution.
 
 Here's what an example session might look like:
 
@@ -277,7 +277,7 @@ On 2021-03-14 20:19, '483656' approaches Earth at a distance of 0.06 au and a ve
 ...
 ```
 
-The prompt is `(neo) `. At the prompt, you can enter either an `inspect` or a `query` subcommand, with the exact same options and behavior as you would on the command line. You can use the special command `quit`, `exit`, or `CTRL+D` to exit this session and return to the command line. The command `help` or `?` shows a help menu, and `help <command>` (e.g. `help query`) shows a help menu specific to that command. In this environment only, you can also use the short forms `i` and `q` for `inspect` and `query` (e.g. `(neo) i --verbose --name Ganymed)`).
+The prompt for the `interactive` subcommand is `(neo) `. At this prompt, either an `inspect` or a `query` subcommand can be entered, with options and behavior identical to those used on the command line. The session can be exited by entering the special command `quit`, `exit`, or using `CTRL+D`, which returns to the command line. For assistance, the command `help` or `?` displays a help menu, while `help <command>` (e.g., `help query`) provides command-specific guidance. In this interactive environment, the abbreviations `i` and `q` can be used as shorthand for `inspect` and `query`, respectively (e.g., `(neo) i --verbose --name Ganymed)`).
 
 Importantly, **the `interactive` session does not automatically update when code is updated.** This means that, if meaningful changes are made to Python files, exiting and restarting the session is necessary. Should the interactive session detect any changes to Python files since its initiation, a warning will be issued before executing each new command. The `interactive` subcommand accepts an optional `--aggressive` argument - if specified, the interactive session will preemptively exit whenever changes to Python files are detected.
 
@@ -294,9 +294,9 @@ optional arguments:
   -a, --aggressive  If specified, kill the session whenever a project file is modified.
 ```
 
-## Project Files
+## Project Structure
 
-This is the project scafffolding:
+Here is the structure of the project:
 
 ```
 .
